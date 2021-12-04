@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Healthbar : MonoBehaviour
 {
+    [SerializeField] private Player _player;
     [SerializeField] private float _changingDelta;
     [SerializeField] private float _healthbarUpdatingTime;
 
@@ -22,18 +23,18 @@ public class Healthbar : MonoBehaviour
         _healthbar.value = maxHealth;
     }
 
-    public void ChangeValue(int health)
+    public void ChangeValue()
     {
-        StartCoroutine(ChangeHealthbarValue(health));
+        StartCoroutine(ChangeHealthbarValue());
     }
 
-    private IEnumerator ChangeHealthbarValue(int health)
+    private IEnumerator ChangeHealthbarValue()
     {
         var waitForSomeSeconds = new WaitForSeconds(_healthbarUpdatingTime);
 
-        while (_healthbar.value != health)
+        while (_healthbar.value != _player.Health)
         {
-            _healthbar.value = Mathf.MoveTowards(_healthbar.value, health, _changingDelta);
+            _healthbar.value = Mathf.MoveTowards(_healthbar.value, _player.Health, _changingDelta);
 
             yield return waitForSomeSeconds;
         }

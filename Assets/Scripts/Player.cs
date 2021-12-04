@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     private int _damageRecieved;
     private int _healingRecieved;
 
+    public int Health => _health;
+
     private void Start()
     {
         _health = _maxHealth;
@@ -23,7 +25,7 @@ public class Player : MonoBehaviour
         _health -= _damageRecieved;
         _health = _health < 0 ? 0 : _health;
 
-        _healthbar.ChangeValue(_health);
+        _healthbar.ChangeValue();
     }
 
     public void TakeHealing()
@@ -31,6 +33,6 @@ public class Player : MonoBehaviour
         _health += _healingRecieved;
         _health = _health > _maxHealth ? _maxHealth : _health;
 
-        _healthbar.ChangeValue(_health);
+        _healthbar.ChangeValue();
     }   
 }

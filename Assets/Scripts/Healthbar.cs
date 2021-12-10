@@ -8,19 +8,16 @@ public class Healthbar : MonoBehaviour
 {
     [SerializeField] private Player _player;
     [SerializeField] private float _changingDelta;
-    [SerializeField] private float _healthbarUpdatingTime;
+    [SerializeField] private float _updatingTime;
 
     private Slider _healthbar;
 
     private void Start()
     {
-        _healthbar = GetComponent<Slider>();    
-    }
+        _healthbar = GetComponent<Slider>();
 
-    public void SetMaxValue(int maxHealth)
-    {
-        _healthbar.maxValue = maxHealth;
-        _healthbar.value = maxHealth;
+        _healthbar.maxValue = _player.MaxHealth;
+        _healthbar.value = _player.MaxHealth;
     }
 
     public void ChangeValue()
@@ -30,7 +27,7 @@ public class Healthbar : MonoBehaviour
 
     private IEnumerator ChangeHealthbarValue()
     {
-        var waitForSomeSeconds = new WaitForSeconds(_healthbarUpdatingTime);
+        var waitForSomeSeconds = new WaitForSeconds(_updatingTime);
 
         while (_healthbar.value != _player.Health)
         {

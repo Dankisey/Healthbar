@@ -1,31 +1,36 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Healthbar _healthbar;
     [SerializeField] private int _maxHealth;
+    [SerializeField] private UnityEvent _healthChanged;
 
     private int _health;
     private int _damageRecieved;
     private int _healingRecieved;
 
     public int Health => _health;
+    public int MaxHealth => _maxHealth;
 
     private void Start()
     {
         _health = _maxHealth;
         _damageRecieved = 10;
         _healingRecieved = 10;
-
-        _healthbar.SetMaxValue(_maxHealth);
     }
  
     public void TakeDamage()
     {
         _health -= _damageRecieved;
-        _health = _health < 0 ? 0 : _health;
 
-        _healthbar.ChangeValue();
+        if (_health < 0)
+        {
+            _health = 0;
+            throw new System.Exception("Invalid value");
+        }
+
+        _healthChanged?.Invoke();
     }
 
     public void TakeHealing()
@@ -33,6 +38,6 @@ public class Player : MonoBehaviour
         _health += _healingRecieved;
         _health = _health > _maxHealth ? _maxHealth : _health;
 
-        _healthbar.ChangeValue();
+        _healthChanged?.Invoke();
     }   
 }

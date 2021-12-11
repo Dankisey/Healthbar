@@ -12,6 +12,11 @@ public class Healthbar : MonoBehaviour
 
     private Slider _healthbar;
 
+    private void OnEnable()
+    {
+        _player.HealthChanged += ChangeValue;
+    }
+
     private void Start()
     {
         _healthbar = GetComponent<Slider>();
@@ -35,5 +40,10 @@ public class Healthbar : MonoBehaviour
 
             yield return waitForSomeSeconds;
         }
+    }
+
+    private void OnDisable()
+    {
+        _player.HealthChanged -= ChangeValue;
     }
 }

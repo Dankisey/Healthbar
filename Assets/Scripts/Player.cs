@@ -13,6 +13,12 @@ public class Player : MonoBehaviour
     public int Health => _health;
     public int MaxHealth => _maxHealth;
 
+    public event UnityAction HealthChanged
+    {
+        add => _healthChanged?.AddListener(value);
+        remove => _healthChanged?.RemoveListener(value);
+    }
+
     private void Start()
     {
         _health = _maxHealth;

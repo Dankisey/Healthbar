@@ -772,8 +772,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59af679a1b1f4b14b8451831f0083564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthbar: {fileID: 282214907}
   _maxHealth: 100
+  _healthChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 282214907}
+        m_TargetAssemblyTypeName: Healthbar, Assembly-CSharp
+        m_MethodName: ChangeValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &282214904
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,8 +891,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e15bd8c59e0a64e846e613491d4d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _changingDelta: 0.4
-  _healthbarUpdatingTime: 0.01
+  _player: {fileID: 256562427}
+  _changingDelta: 0.5
+  _updatingTime: 0.01
 --- !u!1 &342274976
 GameObject:
   m_ObjectHideFlags: 0

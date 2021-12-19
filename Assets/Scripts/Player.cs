@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private int _health;
     private int _damageRecieved;
     private int _healingRecieved;
+    private bool _isAlive => _health > 0;
 
     public int Health => _health;
     public int MaxHealth => _maxHealth;
@@ -28,13 +29,10 @@ public class Player : MonoBehaviour
  
     public void TakeDamage()
     {
-        _health -= _damageRecieved;
+        if (_isAlive)
+            _health -= _damageRecieved;
 
-        if (_health < 0)
-        {
-            _health = 0;
-            throw new System.Exception("Invalid value");
-        }
+        _health = _health < 0 ? 0 : _health;
 
         _healthChanged?.Invoke();
     }

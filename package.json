@@ -1,0 +1,20 @@
+{
+  "name": "com.dankisey.healthbar",
+  "version": "1.0.0",
+  "displayName": "Healthbar",
+  "description": "Ready-made solutions of slider-based and tmp-text-based healthbars",
+  "keywords": [
+    "Healthbar",
+    "Health",
+    "Slider",
+    "TMP"
+  ],
+  "author": {
+    "name": "Dankisey",
+    "email": "dankisey@gmail.com",
+    "url": "https://github.com/Dankisey"
+  },
+  "dependencies": {
+    "com.unity.textmeshpro": ""
+  }
+}
